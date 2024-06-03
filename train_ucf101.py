@@ -102,8 +102,8 @@ if __name__ == "__main__":
             model.eval()
             with torch.inference_mode():
                 z = torch.randn(25, SEQ_LEN, H, W, 3).to(accelerator.device)
-                cond = torch.arange(0, 25).to(accelerator.device) % 51
-                n_cond = torch.ones_like(cond).to(accelerator.device) * 51
+                cond = torch.arange(0, 25).to(accelerator.device) % 101
+                n_cond = torch.ones_like(cond).to(accelerator.device) * 101
                 images = sampler.rf_sample(model, z, cond, n_cond)
                 frames = make_video_grid(images, 5)
                 frames = np.array([np.array(f) for f in frames]).transpose(0, 3, 1, 2)
